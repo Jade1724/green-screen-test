@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-video = cv2.VideoCapture("green-screen-video.mp4")
+video = cv2.VideoCapture("green-screen-video2.mp4")
 image = cv2.imread("japanese-garden.jpg")
 
 
@@ -39,9 +39,10 @@ while True:
     mask = cv2.inRange(hsv, l_green, u_green)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     f = frame - res
+    green_screen = np.where(f==0, image, f)
     cv2.imshow("Frame", frame)
     cv2.imshow("Mask", mask)
-    cv2.imshow("f", f)
+    cv2.imshow("Green Screen", green_screen)
     k = cv2.waitKey(1)
     if k == ord('q'):
         break
