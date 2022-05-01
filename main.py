@@ -32,10 +32,11 @@ while True:
     u_v = cv2.getTrackbarPos('U - V', "Trackbars")
     l_green = np.array([l_h, l_s, l_v])
     u_green = np.array([u_h, u_s, u_v])
-
     mask = cv2.inRange(hsv, l_green, u_green)
+    res = cv2.bitwise_and(frame, frame, mask=mask)
     cv2.imshow("Frame", frame)
     cv2.imshow("Mask", mask)
+    cv2.imshow("Res", res)
     k = cv2.waitKey(1)
     if k == ord('q'):
         break
