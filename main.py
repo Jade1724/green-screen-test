@@ -32,6 +32,9 @@ while True:
     u_v = cv2.getTrackbarPos('U - V', "Trackbars")
     l_green = np.array([l_h, l_s, l_v])
     u_green = np.array([u_h, u_s, u_v])
+
+    l_green = np.array([32, 94, 132])
+    u_green = np.array([179, 255, 255])
     mask = cv2.inRange(hsv, l_green, u_green)
     res = cv2.bitwise_and(frame, frame, mask=mask)
     cv2.imshow("Frame", frame)
